@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Platform - Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        }
+
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            color: #1e3a8a;
+            margin-bottom: 0.3rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #3b82f6;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        button:hover {
+            background: #3b82f6;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            display: none;
+        }
+
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .links a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .register-link a {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login to Your Account</h2>
+        <form id="loginForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+                <div id="emailError" class="error">Invalid email or password.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+                <div id="passwordError" class="error">Invalid email or password.</div>
+            </div>
+
+            <button type="submit">Login</button>
+
+            <div class="links">
+                <a href="forgot-password.html">Forgot Password?</a>
+                <a href="terms of service.html">Terms of Service</a>
+            </div>
+
+            <div class="register-link">
+                Don't have an account? <a href="index.html">Register here</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // Reset error messages
+            document.querySelectorAll('.error').forEach(error => error.style.display = 'none');
+
+            // Get entered values
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Get stored values from localStorage
+            const storedEmail = localStorage.getItem('registeredEmail');
+            const storedPassword = localStorage.getItem('registeredPassword');
+
+            // Check if email and password match stored values
+            if (!storedEmail || !storedPassword || email !== storedEmail || password !== storedPassword) {
+                document.getElementById('emailError').style.display = 'block';
+                document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Simulate successful login and redirect to portfolio dashboard
+            if (isValid) {
+                // Store user data in localStorage to sync with dashboard
+                const userData = {
+                    email: email,
+                    username: 'Elisha Ikon', // Default username, matching dashboard
+                    accountId: 'ID-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
+                    profilePicture: 'https://raw.githubusercontent.com/hopmos/webimage/main/IMG_20250731_213057_690.jpg',
+                    balance: 70 // Default balance, matching dashboard
+                };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                window.location.href = 'portfolio.html'; // Redirect to portfolio dashboard
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>

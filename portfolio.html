@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Futures Trading Investment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #003366;
+            --accent: #00a8e8;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 20px 0;
+            position: relative;
+        }
+        
+        .dashboard-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .user-menu {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .user-menu .welcome-note {
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .portfolio-section {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title h2 {
+            font-size: 28px;
+            color: var(--secondary);
+        }
+        
+        .portfolio-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .summary-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .summary-card h3 {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .summary-card .amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .summary-card.profit .amount {
+            color: var(--success);
+        }
+        
+        .summary-card.loss .amount {
+            color: var(--danger);
+        }
+        
+        .withdrawal-btn-container {
+            display: flex;
+            gap: 10px; /* Adds space between buttons, kept for consistency */
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #004494;
+        }
+        
+        .btn-success {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        
+        .btn-warning {
+            background-color: var(--warning);
+            color: var(--dark);
+        }
+        
+        .btn-warning:hover {
+            background-color: #e0a800;
+        }
+        
+        @media (max-width: 768px) {
+            .dashboard-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .user-menu {
+                margin-top: 15px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .portfolio-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <nav class="dashboard-nav">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Futures Trading Investment</span>
+                </div>
+                <div class="user-menu">
+                    <span class="welcome-note">Welcome</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Account</h2>
+            </div>
+            
+            <!-- Portfolio Summary -->
+            <div class="portfolio-summary">
+                <div class="summary-card">
+                    <h3>Total Balance</h3>
+                    <div class="amount">$0.00</div>
+                </div>
+                <div class="summary-card profit">
+                    <h3>Today's Profit/Loss</h3>
+                    <div class="amount">$0.00</div>
+                </div>
+                <div class="summary-card">
+                    <h3>Total Investments</h3>
+                    <div class="amount">$0.00</div>
+                </div>
+                <div class="summary-card profit">
+                    <h3>Total Returns</h3>
+                    <div class="amount">$0.00</div>
+                </div>
+            </div>
+            
+            <div class="withdrawal-btn-container">
+                <button class="btn btn-success" id="depositRedirectBtn">Deposit Funds</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Deposit button redirect
+        document.getElementById('depositRedirectBtn').addEventListener('click', function() {
+            window.location.href = 'home.html';
+        });
+    </script>
+</body>
+</html>
