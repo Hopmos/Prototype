@@ -620,6 +620,20 @@
     </div>
 
     <script>
+
+        window.onload = function() {
+      let progress = localStorage.getItem("progress");
+
+      // If user already passed this page, redirect them forward
+      if (progress && parseInt(progress) >= 1) {
+        window.location.href = "login.html";
+      } else {
+        // Set progress to 1
+        localStorage.setItem("progress", "1");
+      }
+        }
+
+        
         function validateForm() {
             let isValid = true;
 
