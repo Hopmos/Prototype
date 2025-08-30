@@ -150,7 +150,7 @@
 
             <!-- reCAPTCHA Container -->
             <div class="form-group">
-                <div class="g-recaptcha" data-sitekey="6LfROrgrAAAAAAsNE7kgxoBr6do6U_bm0Bb0wyQs"></div>
+                <div class="g-recaptcha" data-sitekey="YOUR_RECAPTCHA_SITE_KEY"></div>
                 <div id="recaptchaError" class="error"></div>
             </div>
 
@@ -170,23 +170,9 @@
     </div>
 
     <!-- Google reCAPTCHA Script -->
-    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <script>
-        // Function to handle reCAPTCHA load
-        function onRecaptchaLoad() {
-            grecaptcha.render('g-recaptcha', {
-                'sitekey': '6LfROrgrAAAAAAsNE7kgxoBr6do6U_bm0Bb0wyQs',
-                'callback': function(response) {
-                    document.getElementById('recaptchaError').style.display = 'none';
-                },
-                'expired-callback': function() {
-                    document.getElementById('recaptchaError').textContent = 'reCAPTCHA has expired. Please try again.';
-                    document.getElementById('recaptchaError').style.display = 'block';
-                }
-            });
-        }
-
         function validateForm(event) {
             event.preventDefault(); // Prevent default form submission
             let isValid = true;
