@@ -538,6 +538,21 @@
             padding: 8px 12px;
             cursor: pointer;
         }
+
+#chatbotClose {
+    font-size: 18px; /* Adjust icon size */
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    color: white;
+}
+
+#chatbotClose:hover {
+    background-color: #c82333;
+}
         
         .chatbot-input button:hover {
             background-color: #004494;
@@ -731,7 +746,7 @@
         <div class="chatbot-window" id="chatbotWindow">
             <div class="chatbot-header">
                 <span>Investment Assistant</span>
-                <button class="chatbot-toggle" id="chatbotClose"><i class="fas fa-times"></i></button>
+                <button class="chatbot-toggle" id="chatbotClose">❌</button>
             </div>
             <div class="chatbot-body" id="chatbotBody">
                 <div class="chatbot-message bot-message">Hello! How can I assist you today? Please enter a number to select an option:<br>1. What is the Basic Plan?<br>2. What is the Standard Plan?<br>3. What is the Premium Plan?<br>4. How do I invest?<br>5. How do I withdraw funds?<br>6. What are the key features of the platform?<br>7. About Futures Trading<br>8. How can I contact customer service?</div>
