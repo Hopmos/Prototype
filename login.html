@@ -148,6 +148,12 @@
                 <div id="passwordError" class="error"></div>
             </div>
 
+            <!-- reCAPTCHA Container -->
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="6LfROrgrAAAAAAsNE7kgxoBr6do6U_bm0Bb0wyQs"></div>
+                <div id="recaptchaError" class="error"></div>
+            </div>
+
             <button type="submit">Login</button>
 
             <div id="successMessage" class="success">Login successful! Redirecting...</div>
@@ -163,7 +169,24 @@
         </form>
     </div>
 
+    <!-- Google reCAPTCHA Script -->
+    <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+
     <script>
+        // Function to handle reCAPTCHA load
+        function onRecaptchaLoad() {
+            grecaptcha.render('g-recaptcha', {
+                'sitekey': '6LfROrgrAAAAAAsNE7kgxoBr6do6U_bm0Bb0wyQs',
+                'callback': function(response) {
+                    document.getElementById('recaptchaError').style.display = 'none';
+                },
+                'expired-callback': function() {
+                    document.getElementById('recaptchaError').textContent = 'reCAPTCHA has expired. Please try again.';
+                    document.getElementById('recaptchaError').style.display = 'block';
+                }
+            });
+        }
+
         function validateForm(event) {
             event.preventDefault(); // Prevent default form submission
             let isValid = true;
@@ -178,6 +201,7 @@
             // Get entered values
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
+            const recaptchaResponse = grecaptcha.getResponse();
 
             // Email validation regex
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -192,6 +216,13 @@
             if (!passwordRegex.test(password)) {
                 document.getElementById('passwordError').textContent = 'Password must contain at least one uppercase letter, one lowercase letter, one special character, and be at least 8 characters long.';
                 document.getElementById('passwordError').style.display = 'block';
+                isValid = false;
+            }
+
+            // reCAPTCHA validation
+            if (!recaptchaResponse) {
+                document.getElementById('recaptchaError').textContent = 'Please complete the reCAPTCHA verification.';
+                document.getElementById('recaptchaError').style.display = 'block';
                 isValid = false;
             }
 
