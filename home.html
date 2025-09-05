@@ -538,21 +538,6 @@
             padding: 8px 12px;
             cursor: pointer;
         }
-
-#chatbotClose {
-    font-size: 18px; /* Adjust icon size */
-    padding: 5px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    background-color: #dc3545;
-    border-radius: 50%;
-    color: white;
-}
-
-#chatbotClose:hover {
-    background-color: #c82333;
-}
         
         .chatbot-input button:hover {
             background-color: #004494;
@@ -571,7 +556,6 @@
             <h1>Futures Trading</h1>
             <p class="subtitle">Maximize your returns with our proven investment strategies</p>
             <a href="#plans" class="cta-button">View Investment Plans</a>
-            <a href="profile.html" class="cta-button">Profile</a>
             <div class="news-sidebar">
                 <div class="slider">
                     <img src="https://raw.githubusercontent.com/hopmos/webimage/main/picsart.png" alt="News Update 1" class="slide">
@@ -747,7 +731,7 @@
         <div class="chatbot-window" id="chatbotWindow">
             <div class="chatbot-header">
                 <span>Investment Assistant</span>
-                <button class="chatbot-toggle" id="chatbotClose">❌</button>
+                <button class="chatbot-toggle" id="chatbotClose"><i class="fas fa-times"></i></button>
             </div>
             <div class="chatbot-body" id="chatbotBody">
                 <div class="chatbot-message bot-message">Hello! How can I assist you today? Please enter a number to select an option:<br>1. What is the Basic Plan?<br>2. What is the Standard Plan?<br>3. What is the Premium Plan?<br>4. How do I invest?<br>5. How do I withdraw funds?<br>6. What are the key features of the platform?<br>7. About Futures Trading<br>8. How can I contact customer service?</div>
@@ -762,7 +746,7 @@
     <script>
         // Expanded list of 500 random names
         const names = [
-            "Liam", "Noah", "Oliver", "Theodore", "James", "Henry", "Mateo", "Elijah", "Lucas", "William", "Benjamin", "Levi", "Ezra", "Sebastian", "Jack", "Daniel", "Samuel", "Michael", "Ethan", "Asher", "John", "Hudson", "Luca", "Leo", "Elias", "Owen", "Alexander", "Dylan", "Santiago", "Julian", "David", "Joseph", "Matthew", "Luke", "Jackson", "Maverick", "Miles", "Wyatt", "Thomas", "Isaac", "Jacob", "Mason", "Gabriel", "Anthony", "Carter", "Logan", "Aiden", "Grayson", "Caleb", "Cooper", "Charles", "Roman", "Josiah", "Ezekiel", "Thiago", "Isaiah", "Joshua", "Wesley", "Jayden", "Bennett", "Christopher", "Nathan", "Angel", "Nolan", "Waylon", "Cameron", "Brooks", "Andrew", "Beau", "Weston", "Rowan", "Adrian", "Lincoln", "Enzo", "Ian", "Kai", "Kai", "Christian", "Axel", "Aaron", "Theo", "Silas", "Walker", "Jonathan", "Leonardo", "Everett", "Micah", "Ryan", "August", "Gael", "Robert", "Jose", "Eli", "Jeremiah", "Luka", "Amir", "Jaxon", "Parker", "Colton", "Myles", "Adam", "Atlas", "Xavier", "Easton", "Jordan", "Arthur", "Landon", "Austin", "Dominic", "Adriel", "Damian", "Vincent", "River", "Emiliano", "Jace", "Archer", "Lorenzo", "Jameson", "Nicholas", "Emmett", "Milo", "Harrison", "Giovanni", "Carson", "George", "Kayden", "Jonah", "Greyson", "Hunter", "Graham", "Luis", "Declan", "Sawyer", "Jasper", "Ryder", "Carlos", "Connor", "Juan", "Matteo", "Dawson", "Calvin", "Leon", "Dean", "Evan", "Nathaniel", "Diego", "Arlo", "Bryson", "Jason", "Malachi", "Elliot", "Zion", "Emilio", "Ivan", "Hayden", "Stetson", "Jude", "Legend", "Matias", "Callum", "Hayes", "Jett", "Cole", "Elliott", "Jesus", "Ace", "Beckett", "Alan", "Beckham", "Jayce", "Braxton", "Jaxson", "Amari", "Chase", "Rhett", "Max", "Charlie", "Felix", "Kingston", "Judah", "Antonio", "Emmanuel", "Maxwell", "Ryker", "Alejandro", "Nicolas", "Barrett", "Jesse", "Ashton", "Miguel", "Brayden", "Tyler", "Peter", "Camden", "Zachary", "Tatum", "Kevin", "Andres", "Andres", "Finn", "Justin", "Tucker", "Bentley", "Zayden", "Messiah", "Abraham", "Alex", "Adonis", "Kaiden", "Timothy", "Andres", "Knox", "Tate", "Caden", "Ayden", "Nico", "Victor", "Maddox", "Xander", "Oscar", "Parker", "Colter", "Joel", "Abel", "Patrick", "Rafael", "Griffin", "Brody", "Jaziel", "Rory", "Eithan", "Edward", "Riley", "Brandon", "Milan", "Richard", "Malakai", "Ismael", "Kyrie", "Louis", "Elian", "Kairo", "Cohen", "Nash", "Grant", "Callan", "Dallas", "Harvey", "Muhammad", "Mark", "Javier", "Karter", "Zayn", "Crew", "Eric",
+            "Liam", "Noah", "Oliver", "Theodore", "James", "Henry", "Mateo", "Elijah", "Lucas", "William", "Benjamin", "Levi", "Ezra", "Sebastian", "Jack", "Daniel", "Samuel", "Michael", "Ethan", "Asher", "John", "Hudson", "Luca", "Leo", "Elias", "Owen", "Alexander", "Dylan", "Santiago", "Julian", "David", "Joseph", "Matthew", "Luke", "Jackson", "Maverick", "Miles", "Wyatt", "Thomas", "Isaac", "Jacob", "Mason", "Gabriel", "Anthony", "Carter", "Logan", "Aiden", "Grayson", "Caleb", "Cooper", "Charles", "Roman", "Josiah", "Ezekiel", "Thiago", "Isaiah", "Joshua", "Wesley", "Jayden", "Bennett", "Christopher", "Nathan", "Angel", "Nolan", "Waylon", "Cameron", "Brooks", "Andrew", "Beau", "Weston", "Rowan", "Adrian", "Lincoln", "Enzo", "Ian", "Kai", "Kai", "Christian", "Axel", "Aaron", "Theo", "Silas", "Walker", "Jonathan", "Leonardo", "Everett", "Micah", "Ryan", "August", "Gael", "Robert", "Jose", "Eli", "Jeremiah", "Luka", "Amir", "Jaxon", "Parker", "Colton", "Myles", "Adam", "Atlas", "Xavier", "Easton", "Jordan", "Arthur", "Landon", "Austin", "Dominic", "Adriel", "Damian", "Vincent", "River", "Emiliano", "Jace", "Archer", "Lorenzo", "Jameson", "Nicholas", "Emmett", "Milo", "Harrison", "Giovanni", "Carson", "George", "Kayden", "Jonah", "Greyson", "Hunter", "Graham", "Luis", "Declan", "Sawyer", "Jasper", "Ryder", "Carlos", "Connor", "Juan", "Matteo", "Dawson", "Calvin", "Leon", "Dean", "Evan", "Nathaniel", "Diego", "Arlo", "Bryson", "Jason", "Malachi", "Elliot", "Zion", "Emilio", "Ivan", "Hayden", "Stetson", "Jude", "Legend", "Matias", "Callum", "Hayes", "Jett", "Cole", "Elliott", "Jesus", "Ace", "Beckett", "Alan", "Beckham", "Jayce", "Braxton", "Jaxson", "Amari", "Chase", "Rhett", "Max", "Charlie", "Felix", "Kingston", "Judah", "Antonio", "Emmanuel", "Maxwell", "Ryker", "Alejandro", "Nicolas", "Barrett", "Jesse", "Ashton", "Miguel", "Brayden", "Tyler", "Peter", "Camden", "Zachary", "Tatum", "Kevin", "Andres", "Finn", "Justin", "Tucker", "Bentley", "Zayden", "Messiah", "Abraham", "Alex", "Adonis", "Kaiden", "Timothy", "Knox", "Tate", "Caden", "Ayden", "Nico", "Victor", "Maddox", "Xander", "Oscar", "Parker", "Colter", "Joel", "Abel", "Patrick", "Rafael", "Griffin", "Brody", "Jaziel", "Rory", "Eithan", "Edward", "Riley", "Brandon", "Milan", "Richard", "Malakai", "Ismael", "Kyrie", "Louis", "Elian", "Kairo", "Cohen", "Nash", "Grant", "Callan", "Dallas", "Harvey", "Muhammad", "Mark", "Javier", "Karter", "Zayn", "Crew", "Eric",
             "Olivia", "Emma", "Amelia", "Charlotte", "Mia", "Sophia", "Isabella", "Evelyn", "Ava", "Sofia", "Camila", "Harper", "Luna", "Eleanor", "Violet", "Aurora", "Elizabeth", "Eliana", "Hazel", "Chloe", "Ellie", "Nora", "Gianna", "Lily", "Emily", "Aria", "Scarlett", "Penelope", "Zoe", "Ella", "Avery", "Abigail", "Mila", "Lucy", "Isla", "Ivy", "Layla", "Lainey", "Nova", "Grace", "Willow", "Riley", "Emilia", "Naomi", "Elena", "Madison", "Valentina", "Victoria", "Stella", "Delilah", "Maya", "Hannah", "Leah", "Lillian", "Genesis", "Josephine", "Sadie", "Adeline", "Zoey", "Sophie", "Paisley", "Alice", "Ruby", "Eloise", "Madelyn", "Leilani", "Claire", "Addison", "Ayla", "Emery", "Iris", "Eden", "Natalie", "Maria", "Maeve", "Daisy", "Vivian", "Clara", "Autumn", "Liliana", "Everly", "Audrey", "Lyla", "Jade", "Kinsley", "Lyla", "Lainy", "Alana", "Brielle", "Remi", "Sage", "Valerie", "Hallie", "Wrenley", "Kehlani", "Emerson", "June", "Sloane", "Emersyn", "Elsie", "Oaklynn", "Kaia", "Brianna", "Bailey", "Phoebe", "Vivienne", "Andrea", "Myla", "Lia", "Sara", "Kylie", "Reese", "Annie", "Daphne", "Ada", "Adaline", "Arianna", "Ariella", "Sutton", "Celeste", "Jasmine", "Mackenzie", "Haven", "Scottie", "Gemma", "Ana", "Tatum", "Arabella", "Lila", "Molly", "Stevie", "Blake", "Aitana", "Alaina", "Wren", "River", "Noelle", "Delaney", "Journee", "Blair", "Adalyn", "Kaylee", "Alexandra", "Mabel", "Norah", "Presley", "Alora", "Vera", "Celine", "Amy", "Brynlee", "Nyla", "Saylor", "Khloe", "Antonella", "Zara", "Aliyah", "Cataleya", "Lennon", "Kiara", "Camille", "Dahlia", "Kaylani", "Mariana", "Diana", "Reagan", "Selena", "Kimberly", "Rachel", "Gracie", "Faith", "Juliana", "Miriam"
         ];
 
