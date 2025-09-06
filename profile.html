@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .auth-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .hamburger span {
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            border-radius: 2px;
+        }
+        
+        .slide-menu {
+            position: fixed;
+            top: 0;
+            right: -150px;
+            width: 150px;
+            height: 40%;
+            background: white;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            padding: 20px;
+            z-index: 1000;
+        }
+        
+        .slide-menu.active {
+            right: 0;
+        }
+        
+        .slide-menu ul {
+            list-style: none;
+        }
+        
+        .slide-menu li {
+            margin-bottom: 15px;
+        }
+        
+        .slide-menu a, .slide-menu button, .slide-menu label {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .slide-menu a:hover, .slide-menu button:hover, .slide-menu label:hover {
+            color: #3b82f6;
+        }
+        
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .profile-section {
+            padding: 4rem 0;
+        }
+        
+        .profile-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .profile-card h2 {
+            margin-bottom: 1.5rem;
+            color: #1e3c72;
+        }
+        
+        .profile-card p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .portfolio-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .portfolio-link:hover {
+            background-color: #45a049;
+        }
+
+        .profile-pic-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #3b82f6;
+            display: block;
+            margin: 0 auto 1rem;
+        }
+
+        .upload-success {
+            color: #4CAF50;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+            display: none;
+            text-align: center;
+        }
+
+        .upload-input {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>My Profile</h1>
+            <div class="auth-container">
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </div>
+            <div class="slide-menu" id="slideMenu">
+                <button class="close-menu" onclick="toggleMenu()">×</button>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li id="uploadLi">
+                        <label for="uploadInput">Upload Profile Picture</label>
+                        <input type="file" id="uploadInput" class="upload-input" accept="image/*">
+                    </li>
+                    <li><button onclick="logout()">Logout</button></li>
+                </ul>
+                <div id="uploadSuccess" class="upload-success">Successful upload!</div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="profile-section">
+        <div class="container">
+            <div class="profile-card">
+ <div class="profile-pic-container">
+                    <img id="profilePic" class="profile-pic" src="https://www.vecteezy.com/vector-art/9292244-default-avatar-icon-vector-of-social-media-user/preview" alt="Profile Picture">
+                </div>
+                <p><strong>First Name:</strong> <span id="firstName"></span></p>
+                <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+                <p><strong>Username:</strong> <span id="username"></span></p>
+                <p><strong>Email:</strong> <span id="email"></span></p>
+                <p><strong>Phone:</strong> <span id="phone"></span></p>
+                <p><strong>Gender:</strong> <span id="gender"></span></p>
+                <p><strong>Country:</strong> <span id="country"></span></p>
+                <a id="portfolioLink" class="portfolio-link" href="portfolio.html">View Portfolio</a>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById('slideMenu').classList.toggle('active');
+        }
+        
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'login.html';
+        }
+        
+        function loadProfile() {
+            const currentUserEmail = localStorage.getItem('currentUser');
+            if (currentUserEmail) {
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                const userIndex = users.findIndex(u => u.email === currentUserEmail);
+                if (userIndex !== -1) {
+                    const user = users[userIndex];
+                    document.getElementById('firstName').textContent = user.firstName;
+                    document.getElementById('lastName').textContent = user.lastName;
+                    document.getElementById('username').textContent = user.username;
+                    document.getElementById('email').textContent = user.email;
+                    document.getElementById('phone').textContent = user.phone;
+                    document.getElementById('gender').textContent = user.gender;
+                    document.getElementById('country').textContent = user.country;
+                    document.getElementById('portfolioLink').href = `portfolio.html`;
+
+                    // Load profile picture or use default
+                    if (user.profilePic) {
+                        document.getElementById('profilePic').src = user.profilePic;
+                        // Hide upload input if profile picture is already set
+                        document.getElementById('uploadLi').style.display = 'none';
+                    } else {
+                        document.getElementById('profilePic').src = 'https://www.vecteezy.com/vector-art/9292244-default-avatar-icon-vector-of-social-media-user/preview';
+                    }
+                } else {
+                    window.location.href = 'login.html';
+                }
+            } else {
+                window.location.href = 'login.html';
+            }
+        }
+
+        function saveProfilePic(base64) {
+            const currentUserEmail = localStorage.getItem('currentUser');
+            if (currentUserEmail) {
+                let users = JSON.parse(localStorage.getItem('users')) || [];
+                const userIndex = users.findIndex(u => u.email === currentUserEmail);
+                if (userIndex !== -1) {
+                    users[userIndex].profilePic = base64;
+                    localStorage.setItem('users', JSON.stringify(users));
+                    // Hide upload input after saving
+                    document.getElementById('uploadLi').style.display = 'none';
+                }
+            }
+        }
+
+        window.addEventListener('load', loadProfile);
+
+        document.getElementById('uploadInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const base64 = event.target.result;
+                    document.getElementById('profilePic').src = base64;
+                    saveProfilePic(base64);
+
+                    // Show success message
+                    const successDiv = document.getElementById('uploadSuccess');
+                    successDiv.style.display = 'block';
+                    setTimeout(() => {
+                        successDiv.style.display = 'none';
+                    }, 3000); // Hide after 3 seconds
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
