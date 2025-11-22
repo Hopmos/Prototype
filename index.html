@@ -687,31 +687,6 @@
             
             <div class="plans-grid">
                 <div class="plan-card">
-                    <div class="basic-header">
-                        <h3 class="plan-name">Basic Plan</h3>
-                        <p class="plan-duration">7 Days Investment</p>
-                    </div>
-                    <div class="plan-body">
-                        <div class="plan-amount">
-                            <p>Investment Amounts:</p>
-                            <p>$5 | $10 | $15 | $20</p>
-                        </div>
-                        <div class="plan-return">
-                            <p>Daily Return: <span class="return-percentage">5.72%</span></p>
-                            <p>Total Return: 40%</p>
-                        </div>
-                        <button class="invest-button" onclick="toggleDropdown('basic-dropdown')">Invest Now</button>
-                        <select class="amount-dropdown" id="basic-dropdown" onchange="redirectToPayment(this)">
-                            <option value="">Select Amount</option>
-                            <option value="5" data-link="$5.html">$5</option>
-                            <option value="10" data-link="$10.html">$10</option>
-                            <option value="15" data-link="$15.html">$15</option>
-                            <option value="20" data-link="$20.html">$20</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="plan-card">
                     <div class="standard-header">
                         <h3 class="plan-name">Standard Plan</h3>
                         <p class="plan-duration">14 Days Investment</p>
@@ -719,7 +694,7 @@
                     <div class="plan-body">
                         <div class="plan-amount">
                             <p>Investment Amounts:</p>
-                            <p>$30 | $40 | $50 | $60</p>
+                            <p>$50 | $60</p>
                         </div>
                         <div class="plan-return">
                             <p>Daily Return: <span class="return-percentage">7.15%</span></p>
@@ -728,8 +703,6 @@
                         <button class="invest-button" onclick="toggleDropdown('standard-dropdown')">Invest Now</button>
                         <select class="amount-dropdown" id="standard-dropdown" onchange="redirectToPayment(this)">
                             <option value="">Select Amount</option>
-                            <option value="30" data-link="$30.html">$30</option>
-                            <option value="40" data-link="$40.html">$40</option>
                             <option value="50" data-link="$50.html">$50</option>
                             <option value="60" data-link="$60.html">$60</option>
                         </select>
@@ -838,10 +811,10 @@
                 <button class="chatbot-close" id="chatbotClose">✖</button>
             </div>
             <div class="chatbot-body" id="chatbotBody">
-                <div class="chatbot-message bot-message">Hello! How can I assist you today? Please enter a number to select an option:<br>1. What is the Basic Plan?<br>2. What is the Standard Plan?<br>3. What is the Premium Plan?<br>4. What is the Platinum Plan?<br>5. How do I invest?<br>6. How do I withdraw funds?<br>7. What are the key features of the platform?<br>8. About Futures Trading<br>9. How can I contact customer service?</div>
+                <div class="chatbot-message bot-message">Hello! How can I assist you today? Please enter a number to select an option:<br>1. What is the Standard Plan?<br>2. What is the Premium Plan?<br>3. What is the Platinum Plan?<br>4. How do I invest?<br>5. How do I withdraw funds?<br>6. What are the key features of the platform?<br>7. About Futures Trading<br>8. How can I contact customer service?</div>
             </div>
             <div class="chatbot-input">
-                <input type="number" id="chatbotInput" placeholder="Enter 1-9" min="1" max="9">
+                <input type="number" id="chatbotInput" placeholder="Enter 1-8" min="1" max="8">
                 <button id="chatbotSend">Send</button>
             </div>
         </div>
@@ -1073,8 +1046,8 @@
                     return;
                 }
                 const userInput = chatbotInput.value.trim();
-                if (!userInput || isNaN(userInput) || userInput < 1 || userInput > 9) {
-                    addMessage('Please enter a valid number between 1 and 9.', 'bot-message');
+                if (!userInput || isNaN(userInput) || userInput < 1 || userInput > 8) {
+                    addMessage('Please enter a valid number between 1 and 8.', 'bot-message');
                     chatbotInput.value = '';
                     chatbotInput.focus();
                     return;
@@ -1084,15 +1057,14 @@
                 chatbotInput.value = '';
 
                 const responses = {
-                    '1': `The Basic Plan is a 7-day investment option with amounts from $5 to $20. It offers a daily return of 5.72%, resulting in a total return of 40% after 7 days.<br>Type a number (1-9) to return to the main menu.`,
-                    '2': `The Standard Plan is a 14-day investment option with amounts from $30 to $60. It offers a daily return of 7.15%, resulting in a total return of 100% after 14 days.<br>Type a number (1-9) to return to the main menu.`,
-                    '3': `The Premium Plan is a 30-day investment option with amounts from $70 to $100. It offers a daily return of 9.17%, resulting in a total return of 275% after 30 days.<br>Type a number (1-9) to return to the main menu.`,
-                    '4': `The Platinum Plan is a 21-day investment option with amounts from $500 to $10,000. It offers a daily return of 20%, resulting in a total return of 420% after 21 days.<br>Type a number (1-9) to return to the main menu.`,
-                    '5': `To invest, scroll to the Investment Plans section, choose a plan, click "Invest Now", select an amount from the dropdown, and you will be redirected to the payment page.<br>Type a number (1-9) to return to the main menu.`,
-                    '6': `Withdrawals are processed quickly after your investment period ends. Visit your profile to request withdrawals via Cryptocurrency or Bank Transfer.<br>Type a number (1-9) to return to the main menu.`,
-                    '7': `Key features include high returns through market analysis, a secure platform, fast withdrawals, transparent plans, and 24/7 customer support.<br>Type a number (1-9) to return to the main menu.`,
-                    '8': `Futures Trading is a leading investment platform specializing in commodities, currencies, and index futures. We offer transparent plans to grow your wealth securely.<br>Type a number (1-9) to return to the main menu.`,
-                    '9': `Contact customer service via email at futurestradinginvestment.org@gmail.com`
+                    '1': `The Standard Plan is a 14-day investment option with amounts from $50 to $60. It offers a daily return of 7.15%, resulting in a total return of 100% after 14 days.<br>Type a number (1-8) to return to the main menu.`,
+                    '2': `The Premium Plan is a 30-day investment option with amounts from $70 to $100. It offers a daily return of 9.17%, resulting in a total return of 275% after 30 days.<br>Type a number (1-8) to return to the main menu.`,
+                    '3': `The Platinum Plan is a 21-day investment option with amounts from $500 to $10,000. It offers a daily return of 20%, resulting in a total return of 420% after 21 days.<br>Type a number (1-8) to return to the main menu.`,
+                    '4': `To invest, scroll to the Investment Plans section, choose a plan, click "Invest Now", select an amount from the dropdown, and you will be redirected to the payment page.<br>Type a number (1-8) to return to the main menu.`,
+                    '5': `Withdrawals are processed quickly after your investment period ends. Visit your profile to request withdrawals via Cryptocurrency or Bank Transfer.<br>Type a number (1-8) to return to the main menu.`,
+                    '6': `Key features include high returns through market analysis, a secure platform, fast withdrawals, transparent plans, and 24/7 customer support.<br>Type a number (1-8) to return to the main menu.`,
+                    '7': `Futures Trading is a leading investment platform specializing in commodities, currencies, and index futures. We offer transparent plans to grow your wealth securely.<br>Type a number (1-8) to return to the main menu.`,
+                    '8': `Contact customer service via email at futurestradinginvestment.org@gmail.com`
                 };
 
                 const response = responses[userInput];
@@ -1144,7 +1116,7 @@
                     chatbotToggle.addEventListener('click', () => {
                         chatbotWindow.style.display = chatbotWindow.style.display === 'block' ? 'none' : 'block';
                         if (chatbotWindow.style.display === 'block') {
-                            document.getElementById('chatbotBody').innerHTML = '<div class="chatbot-message bot-message">Hello! How can I assist you today? Please enter a number to select an option:<br>1. What is the Basic Plan?<br>2. What is the Standard Plan?<br>3. What is the Premium Plan?<br>4. What is the Platinum Plan?<br>5. How do I invest?<br>6. How do I withdraw funds?<br>7. What are the key features of the platform?<br>8. About Futures Trading<br>9. How can I contact customer service?</div>';
+                            document.getElementById('chatbotBody').innerHTML = '<div class="chatbot-message bot-message">Hello! How can I assist you today? Please enter a number to select an option:<br>1. What is the Standard Plan?<br>2. What is the Premium Plan?<br>3. What is the Platinum Plan?<br>4. How do I invest?<br>5. How do I withdraw funds?<br>6. What are the key features of the platform?<br>7. About Futures Trading<br>8. How can I contact customer service?</div>';
                             chatbotInput.focus();
                         }
                     });
